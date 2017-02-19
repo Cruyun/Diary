@@ -8,4 +8,9 @@
 ---
 
 ###2017
-- 2.15 What's the difference between using “let” and “var” to declare a variable?
+2.15 
+- What's the difference between using “let” and “var” to declare a variable? 
+- JavaScript 数组方法对比
+
+2.19
+- vue.js实现显示密码、隐藏密码功能
