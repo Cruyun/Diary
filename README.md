@@ -50,3 +50,8 @@
 4.25
 - JavaScript事件
 - 什么是URI、URL、URN、URC和Data URI？
+
+5.7
+- JavaScript数组所有API全解密
+- Choosing an HTTP Status Code — Stop Making It Hard
+- 关于 RESTful API 中 HTTP 状态码的定义
