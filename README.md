@@ -55,3 +55,10 @@
 - JavaScript数组所有API全解密
 - Choosing an HTTP Status Code — Stop Making It Hard
 - 关于 RESTful API 中 HTTP 状态码的定义
+
+5.15 关于hexo博客的一些链接
+- 一个为网页生成目录的小工具awesome-toc
+
+5.22
+- html-webpack-plugin用法全解
+- html-webpack-plugin
