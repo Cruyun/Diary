@@ -66,3 +66,4 @@
 5.23
 - Everything you need to know about HTTP security headers
 - Webpack: A Detailed Introduction
+- JavaScript Promises 102 - The 4 Promise Methods
