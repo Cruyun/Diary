@@ -62,3 +62,7 @@
 5.22
 - html-webpack-plugin用法全解
 - html-webpack-plugin
+
+5.23
+- Everything you need to know about HTTP security headers
+- Webpack: A Detailed Introduction
