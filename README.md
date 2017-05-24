@@ -67,3 +67,11 @@
 - Everything you need to know about HTTP security headers
 - Webpack: A Detailed Introduction
 - JavaScript Promises 102 - The 4 Promise Methods
+
+5.24 Vue.js
+Article Series in CSS-Tricks:
+- Rendering, Directives, and Events
+- Components, Props, and Slots
+- Vue-cli
+- Vuex
+- Animations
