@@ -78,3 +78,7 @@ Article Series in CSS-Tricks:
 
 6.2
 - CSS Stacking Context里那些鲜为人知的坑
+
+7.16 JS学习
+- Using “Object.create” instead of “new”
+- 关于typeof、instanceof判断数据类型
