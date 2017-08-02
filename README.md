@@ -85,3 +85,6 @@ Article Series in CSS-Tricks:
 
 7.18 Git操作
 - Git标签tag相关操作
+
+8.2
+- Parallax Scrolling mobile
