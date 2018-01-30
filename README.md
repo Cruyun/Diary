@@ -1,11 +1,9 @@
 # Diary
 
-### 2016
+### 2018
 
-- CSS Reset
-- 垂直居中的方法
-- div并列
-- 消除inline-block的元素间距
+1.30
+- PostCSS
 
 ---
 
@@ -88,3 +86,19 @@ Article Series in CSS-Tricks:
 
 8.2
 - Parallax Scrolling mobile
+
+9.10
+- JavaScript Event Loop 机制详解与 Vue.js 中实践应用
+
+- 《Flexbox 语法清单》
+
+- 8 CSS gotchas to start your morning off right
+
+---
+
+### 2016
+
+- CSS Reset
+- 垂直居中的方法
+- div并列
+- 消除inline-block的元素间距
