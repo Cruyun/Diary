@@ -74,7 +74,7 @@ class State {
 ## 2.游戏的绘制机制
 
 
-处理活动元素的动作和冲突后往往需要更新游戏全局的状态，分发到每一个实体上。每当状态改变，触发render方法，render方法根据最新的 state 更新UI，改变 view，view 的实现可以选择操作 DOM 等方法，最后在每一帧调用更新方法(requstAnimationFrame)。
+处理活动元素的动作和冲突后往往需要更新游戏全局的状态，分发到每一个实体上。当状态改变，代码初始化时，调用了一次`requstAnimationFrame()`，**requstAnimationFrame接受一个回调函数，让浏览器在 render 的每一个帧开头调用该回调函数，render方法根据最新的 state 更新UI，**改变 view，所以 `UI = f(state)` ，f 大致上等于render。view 的实现可以选择操作 DOM 等方法。
 
 
 ### 1）更新游戏全局的状态
@@ -127,7 +127,7 @@ class DOMDisplay {
 }
 ```
 
-### 3）调用更新方法定时重绘：requestAnimationFrames
+### 3）调用更新方法定时重绘
 
 游戏场景定时重绘，不是用timeinterval或者setTimeout，而是第十三章的requestAnimationFrames函数，该函数要求我们跟踪上次调用函数的事件，并在每一帧后再次调用requestAnimationFrame方法。在这里定义一个辅助函数把代码包装到runAnimation的简单接口里，用于组织 requestAnimationFrame() 的执行。
 
@@ -151,7 +151,7 @@ function runAnimation(frameFunc) {
 + 内部的fame函数有个time参数，它是由系统传入的，是当前系统时间；
 + timeStep 是当前时间与上次刷新时间的间隔，问什么要给它取个最大值(100ms)呢？ 因为，如果浏览器窗口 (或tab) 被隐藏了，系统就会停止刷新该窗口，直到该窗口重新显示出来。 这可以起到暂停游戏的作用。
 
-> window.requestAnimationFrame() 方法告诉浏览器你希望执行动画并请求浏览器在下一次重绘之前调用指定的函数来更新动画。该方法使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用，回调的次数常是每秒60次。(from MDN)
+> window.requestAnimationFrame() 方法告诉浏览器你希望执行动画并请求浏览器在下一次重绘之前调用指定的函数来更新动画。该方法使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用，回调的次数通常是每秒60次。(from MDN)
 
 
 在某个单个帧中，有可能发生这种情况，在某一帧中会被多次触发某个事件（比如scroll），这个事件又会频繁的触发样式的修改，导致可能需要多次 layout 或者 paint，这其实是一种浪费，而且过于频繁的 layout 和paint 会造成卡顿，实际上在一帧中并不需要重复 layout 或者 paint 那么多次。使用`requestAnimationFrame()`，当animation 运行时，在一个 timer loop（计时器循环）每几毫秒进行一次重绘。
@@ -189,6 +189,7 @@ function runLevel(level, Display) {
 ---
 
 # 3.浏览器的渲染机制
+游戏和普通的 UI 的区别是，游戏因为不断的交互，动画频繁，所以每一帧都会重绘，而普通 UI 只有在最开始载入页面和用户触发 UI 更新的时候才会重绘。
 
 ### 单个帧的渲染流程
 目前，大多数设备的刷新率都是60FPS，如果浏览器在交互的过程中能够时刻保持在60FPS左右，用户就不会感到卡顿，否则，就会影响用户的体验。
