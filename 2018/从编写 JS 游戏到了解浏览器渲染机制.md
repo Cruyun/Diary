@@ -1,6 +1,6 @@
 # 从编写 JS 游戏到了解浏览器渲染机制
 
-学习了 eloquent JavaScript 中的 platform game，我们对编写 JS 游戏有了大致步骤的了解，本文主要解析 JS 编写游戏的主要步骤，以及游戏的绘制机制。参考代码为	[Eloquent JavaScript 3rd edition Chapter16](http://eloquentjavascript.net/16_game.html#c_ObYKMNTKci)。
+学习了 Eloquent JavaScript 中的 platform game，我们对编写 JS 游戏有了大致步骤的了解，本文主要解析 JS 编写游戏的主要步骤，以及游戏的绘制机制。参考代码为	[Eloquent JavaScript 3rd edition Chapter16](http://eloquentjavascript.net/16_game.html#c_ObYKMNTKci)。
 
 ## 1.组织游戏的对象和方法
 
@@ -189,7 +189,6 @@ function runLevel(level, Display) {
 ---
 
 # 3.浏览器的渲染机制
-游戏和普通的 UI 的区别是，游戏因为不断的交互，动画频繁，所以每一帧都会重绘，而普通 UI 只有在最开始载入页面和用户触发 UI 更新的时候才会重绘。
 
 ### 单个帧的渲染流程
 目前，大多数设备的刷新率都是60FPS，如果浏览器在交互的过程中能够时刻保持在60FPS左右，用户就不会感到卡顿，否则，就会影响用户的体验。
@@ -227,13 +226,17 @@ JS引擎是基于事件驱动，采用的是单线程运行机制。即JS引擎�
 
 ---
 
-**小结：**
-A Platform Game的大致思路是先定义游戏中的各个实体，包括相应的属性、状态、更新状态的方法，定义全局的游戏状态和更新全局状态（update state）的方法，以数据驱动渲染视图（render view），最后在每一帧（requestAnimationFrame）调用更新方法定时重绘。
+### 小结
 
-浏览器的渲染同理，每16ms渲染一次， 将最新的 state 映射到 UI。
+A Platform Game的大致思路是先定义游戏中的各个实体，包括相应的属性、状态、更新状态的方法，定义全局的游戏状态和更新全局状态（update state）的方法，以数据驱动渲染视图（render view），当状态改变，代码初始化时，调用了一次`requstAnimationFrame()`，让浏览器在 render 的每一个帧开头调用`requstAnimationFrame()`的回调函数，根据最新的 state 更新UI，改变 view。
 
+游戏和普通的 UI 的区别是，游戏因为不断的交互，动画频繁，所以每一帧都会重绘，而普通 UI 只有在最开始载入页面和用户触发 UI 更新的时候才会重绘。
 
- 参考及相关阅读：
+在游戏中或普通 UI 中，render 的时候可以是全量替换，也可以是差量更新，某些较轻量的页面简单粗暴地全量替换，一般在生产级别的是差量更新。例如 游戏会有多个 Canvas 部分的重绘，分层渲染。而React 和 Vue 等框架，使用 diff 算法比较得出 Virtual DOM的差异，最后渲染到真实的 DOM 上。
+
+---
+
+参考及相关阅读：
  
  - [Eloquent JavaScript 3rd：A Platform Game](http://eloquentjavascript.net/16_game.html#c_ObYKMNTKci)
  - [浏览器进程和线程](http://imweb.io/topic/58e3bfa845e5c13468f567d5)
