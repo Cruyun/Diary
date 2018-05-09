@@ -135,3 +135,4 @@ const proxyObj =  new Proxy(objToWatch, handler);
 - [MDN Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 - [使用 Proxy 实现观察者模式](http://es6.ruanyifeng.com/#docs/reflect#%E5%AE%9E%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8-Proxy-%E5%AE%9E%E7%8E%B0%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F)
 - [Proxy详解](https://www.keithcirkel.co.uk/metaprogramming-in-es6-part-3-proxies/)
+- [使用 ES6 Proxy 实现数据绑定](https://blog.risingstack.com/writing-a-javascript-framework-data-binding-es6-proxy/) [译文](https://www.zcfy.cc/article/writing-a-javascript-framework-data-binding-with-es6-proxies-risingstack)
