@@ -32,6 +32,22 @@
 
 - 从编写 JS 游戏到了解浏览器渲染机制
 
+[4.8](https://github.com/Cruyun/Diary/blob/master/2018/2018.4.8.md)
+
+- 回调地狱的今生前世
+
+[4.24 Linux](https://github.com/Cruyun/Diary/blob/master/2018/2018.4.24.md)
+
+- Shell脚本之处理用户输入
+
+[5.11](https://github.com/Cruyun/Diary/blob/master/2018/Vue2.x%E7%9A%84diff%E7%AE%97%E6%B3%95.md)
+
+- Vue 2.x 的 virtual-dom 实现与diff算法
+
+[5.15](https://github.com/Cruyun/Diary/blob/master/2018/draw_line_algorithm.md)
+
+- 计算机图形学绘制直线的三大基础算法：数值微分法、中点画线法和 Bresenham 算法
+
 ---
 
 ### 2017
