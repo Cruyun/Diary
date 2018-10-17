@@ -174,3 +174,10 @@ I’m some content
 使用与上面相同的CSS，我们可以实现我们想要的布局。
 
 目前，display: contents仅在两个主要浏览器中受支持，其他许多浏览器很快就会提供支持。
+
+原文：[How display: contents; Works
+](https://bitsofco.de/how-display-contents-works/)
+
+推荐阅读：
+- [display：contents 与消失的盒模型](https://www.zcfy.cc/article/vanishing-boxes-with-display-contents-1693.html)
+- [More accessible markup with display: contents](https://hiddedevries.nl/en/blog/2018-04-21-more-accessible-markup-with-display-contents)
