@@ -34,8 +34,9 @@ foo 函数可以访问变量 a，但是 a 既不是 foo 函数的局部变量，
 ECMAScript中，闭包指的是：
 
 > 从理论角度：所有的函数。因为它们都在创建的时候就将上层上下文的数据保存起来了。哪怕是简单的全局变量也是如此，因为函数中访问全局变量就相当于是在访问自由变量，这个时候使用最外层的作用域.
-> 
- 从实践角度：以下函数才算是闭包：
+
+从实践角度：以下函数才算是闭包：
+
 1. 即使创建它的上下文已经销毁，它仍然存在（比如，内部函数从父函数中返回）
 2.  在代码中引用了自由变量
 
@@ -72,7 +73,7 @@ foo();
 
 ```
 fContext = {
-    Scope: [AO, checkscopeContext.AO, globalContext.VO],
+    Scope: [AO, checkscopeContext.AO, globalContext.VO], // Activetion Object（AO）、Variable Object（VO）
 }
 ```
 
@@ -82,6 +83,8 @@ fContext = {
 
 
 ### 必刷题
+
+例题1：
 
 ```
 var data = [];
@@ -179,3 +182,71 @@ data[0]Context 的 AO 并没有 i 值，所以会沿着作用域链从匿名函�
 
 data[1] 和 data[2] 是一样的道理。
 
+例题2：
+
+```
+for ( var i=1; i<=5; i++) {
+	setTimeout( function timer() {
+		console.log( i );
+	}, i*1000 );
+}
+```
+
+首先因为 setTimeout 是个异步函数，所有会先把循环全部执行完毕，这时候 i 就是 6 了，所以会输出一堆 6。
+
+解决办法两种，第一种使用闭包
+
+```
+for (var i = 1; i <= 5; i++) {
+  (function(j) {
+    setTimeout(function timer() {
+      console.log(j);
+    }, j * 1000);
+  })(i);
+}
+```
+
+第二种就是使用 setTimeout 的第三个参数
+
+```
+for ( var i=1; i<=5; i++) {
+	setTimeout( function timer(j) {
+		console.log( j );
+	}, i*1000, i);
+}
+```
+
+第三种就是使用 let 定义 i 了
+
+```
+for ( let i=1; i<=5; i++) {
+	setTimeout( function timer() {
+		console.log( i );
+	}, i*1000 );
+}
+```
+
+因为对于 let 来说，他会创建一个块级作用域，相当于
+
+```
+{ // 形成块级作用域
+  let i = 0
+  {
+    let ii = i
+    setTimeout( function timer() {
+        console.log( ii );
+    }, i*1000 );
+  }
+  i++
+  {
+    let ii = i
+  }
+  i++
+  {
+    let ii = i
+  }
+  ...
+}
+```
+
+---
