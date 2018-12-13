@@ -56,3 +56,5 @@ for (var value of range(0, 3)) {
   console.log(value)
 }
 
+
+ref: [ES6 In Depth: Generators](https://hacks.mozilla.org/2015/05/es6-in-depth-generators/)
