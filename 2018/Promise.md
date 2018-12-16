@@ -57,27 +57,43 @@ then 方法可以获得上一次 promise 中 resolve 的value或者 reject 的 r
 
 
 
+
 ### 2.3 A Promise Resolution Procedure
 运行`[[Resolve]](promise, x)`有以下步骤：
 
 2.3.1  如果`promise`和`x`指向同一个对象，promise 会被 reject 并且抛出`TypeError`作为 reason。
 
 2.3.2  如果 x 是一个 promise，接受他的状态：
+
 	2.3.2.1 如果 x 在 pending，`promise`也保持`pending`直到x 转为fulfilled 或者 rejected
+
 	2.3.2.2 如果 x 为 fulfilled， `promise`将以与 x 相同的 value 而fulfill。
+
 	2.3.2.3 如果x为 rejected 时，`promise`是将与 x 相同的reason而 reject。
 
+
 2.3.2  如果 x 是一个对象或 function：
+
 	2.3.2.1 让 then 变为 x.then
+
 	2.3.3.2  如果x.then抛出一个一场 e，那么 promise 也将以 e 作为 reason 而 reject。
+
 	2.3.3.3 如果 then 是一个函数，将 x 作为 this 调用，`resolvePromise`和`rejectPromise`分别作为第一、二个参数：
+
 		2.3.3.3.1 如果 `resolvePromise`以 `y` 为value被调用，那么运行`[[Resolve]](promise, y)`；
+
 		2.3.3.3.2 如果 `rejectPromise`以 `r` 为reason被调用，那么 `promise` 也将以 `r` 作为 reason 而 reject；
+
 		2.3.3.3.3 如果 `resolvePromise` 和`rejectPromise` 其中一个执行过的话，忽略其他的。
+
 		2.3.3.3.4 如果调用 then 时抛出异常 e
+
 				2.3.3.3.4.1 如果 `resolvePromise` 和`rejectPromise` 其中一个执行过的话，忽略它
+
 				2.3.3.3.4.2 否则，promise 也将以 e 作为 reason 而 reject
+
 	2.3.3.4 如果 then 不是一个函数，以 x 为 value 将 promise fulfill
+
 2.3.4 如果 x 不是一个函数或者对象，以 x 为 value 将 promise fulfill
 
 参考及更多阅读：
