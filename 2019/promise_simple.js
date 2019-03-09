@@ -64,7 +64,7 @@ Promise.prototype.then = function(onResolved, onRejected) {
 
   if (self.status === 'pending') {
     return new Promise(function(resolve, reject) {
-      self.onRejectedCallback.push(function (resolve, reject) {
+      self.onResolvedCallback.push(function (resolve, reject) {
         try {
           var x = onResolved(resolve);
           if (x instanceof Promise) {
