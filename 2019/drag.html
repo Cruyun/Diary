@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  .wrapper{
+    height: 500px;
+    position: relative;
+    background-color: aqua;
+  }
+  .square{
+    width: 200px;
+    height: 200px;
+    background-color: green;
+    position: absolute;
+  }
+</style>
+<body>
+  <div class="wrapper" id="wrapper">
+    <div class="square" id="square"> 页面内有一个正方形元素，实现对其拖拽和放下，需要考虑窗口的边界情况。</div>
+  </div>
+</body>
+<script>
+  var dragging = false;
+  // 记录相对位置
+  var offset = {
+    x: 0,
+    y: 0
+  };
+  var wrapper = document.getElementById('wrapper');
+  var square = document.getElementById('square');
+  square.addEventListener('mousedown',function(e){
+    var ev = e || window.event;
+    dragging = true;
+    offset.x = ev.clientX - this.offsetLeft;
+    offset.y= ev.clientY - this.offsetTop;
+    console.log(offset);
+  });
+  wrapper.addEventListener('mouseover',function(e){
+    var ev = e || window.event;
+    var maxX = this.clientWidth - square.offsetWidth;
+    var maxY = this.clientHeight - square.offsetHeight;
+    var mx = Math.min(Math.max(0,(ev.clientX - offset.x)),maxX);
+    var my = Math.min(Math.max(0,(ev.clientY - offset.y)),maxY);
+    if(dragging){
+      square.style.left = mx + 'px';
+      square.style.top = my + 'px';
+    }
+  })
+  wrapper.addEventListener('mouseup',function(e){
+    dragging = false;
+  })
+</script>
+</html>

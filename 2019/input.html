@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+
+}
+#div1{
+    margin:200px auto;
+    position: relative;
+}
+
+ul{
+    list-style: none;
+    margin: 0 auto;
+    background-color: #ededed;
+    color: #3b200c;
+    width: 400px;
+    border: none;
+}
+
+li{
+    cursor: pointer;
+}
+
+input{
+    display: block;
+    margin: 0 auto;
+    line-height: 40px;
+    height: 40px;
+    width: 400px;
+    font-size: 20px;
+    background-color: #ede387;
+    border: none;
+}
+  </style>
+</head>
+<body>
+  <div id="div1">
+    <input type="text" id="input" placeholder="有autocomplete的输入框"/>
+    <ul id="ul">
+    </ul>
+  </div>
+</body>
+<script>
+  var arr = ['a','apple','abandon','bilibili','beep','before','become','being','highmaintains','by','bye','banana']
+
+  var input = document.getElementById('input');
+  var ul = document.getElementById('ul')
+  
+  input.addEventListener('input', function(evt) {
+    var _value = evt.target.value.trim();
+    if (_value) {
+      autoComplete(_value, arr);
+    } else {
+      ul.innerHTML = ' '
+    }
+  })
+
+  autoComplete = function(input, arr) {
+    var list = []
+    arr.forEach(item => {
+      if (item.startsWith(input)) {
+        list.push('<li>' + item + '</li>')
+      }
+    })
+    ul.innerHTML = list.join('')
+  }
+  
+  addToInput = function (item) {
+    var val = item.innerText;
+    input.value = val
+  }
+  ul.addEventListener('click', function(e) {
+    if (e.target.tagName === 'li') {
+      addToInput(e.target)
+    }
+  })
+</script>
+</html>
